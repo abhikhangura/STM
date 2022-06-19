@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">STM</string>
+    <string name="register">Not a user? SignUp</string>
+    <string name="invalidIdAndPassword">Invalid username and password!</string>
+</resources>

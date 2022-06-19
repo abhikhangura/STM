@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">stmapi-env-1.eba-ihzgwh9t.us-east-1.elasticbeanstalk.com</domain>
+    </domain-config>
+</network-security-config>
