@@ -1,6 +1,8 @@
 package model
 
+import java.time.Duration
+
 data class Plans(
-    val amount: Int,
-    val planName : String
+    val amount: Number,
+    val planName : String,
 )

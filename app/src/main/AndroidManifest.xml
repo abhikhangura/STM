@@ -15,6 +15,12 @@
         android:theme="@style/Theme.STM"
         tools:targetApi="n">
         <activity
+            android:name=".RechargeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CardDetails"
+            android:exported="false" />
+        <activity
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity

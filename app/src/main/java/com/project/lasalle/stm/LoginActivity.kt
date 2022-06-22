@@ -16,6 +16,14 @@ import retrofit2.Response
 
 class LoginActivity : AppCompatActivity() {
 
+    override fun onResume() {
+        super.onResume()
+        edEmail.isErrorEnabled = false
+        edPassword.isErrorEnabled = false
+        edEmail.requestFocus()
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.setFlags(
@@ -32,15 +40,20 @@ class LoginActivity : AppCompatActivity() {
             val password = edPassword.editText?.text.toString().trim()
             validateUser(username, password, it)
         }
+
+        txtRegister.setOnClickListener(){
+            val intent = Intent(this@LoginActivity, SignUpActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // validating user
     private fun validateUser(username: String, password: String, it: View) {
         if (username.isEmpty()){
-            edEmail.error = "Please enter your username.."
+            edEmail.error = "Please enter your email.."
             edEmail.requestFocus()
         }
-        if (password.isEmpty()) {
+        else if (password.isEmpty()) {
             edPassword.error = "Please enter your password.."
             edPassword.requestFocus()
         }
@@ -52,9 +65,9 @@ class LoginActivity : AppCompatActivity() {
                     val user = response.body()?.success
 
                     if (user == true){
-                        val sharedUsername = getSharedPreferences("username", MODE_PRIVATE)
+                        val sharedUsername = getSharedPreferences("email", MODE_PRIVATE)
                         val editor = sharedUsername.edit()
-                        editor.putString("username",username)
+                        editor.putString("email",username)
                         editor.apply()
                         val mainIntent = Intent(this@LoginActivity,
                             MainActivity::class.java)

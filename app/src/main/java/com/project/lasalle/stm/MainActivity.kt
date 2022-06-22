@@ -1,10 +1,13 @@
 package com.project.lasalle.stm
 
 
+import android.content.Intent
 import api.RetrofitClient.service
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import kotlinx.android.synthetic.main.activity_main.*
+import model.CardDetails
 import model.UserItem
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,24 +26,51 @@ class MainActivity : AppCompatActivity() {
 
     private fun init(){
 
-        val sharedUsername= getSharedPreferences("username", MODE_PRIVATE)
-        val username = sharedUsername.getString("username", null)
+        val sharedUsername= getSharedPreferences("email", MODE_PRIVATE)
+        val email = sharedUsername.getString("email", null)
 
-        if (username != null) {
-            val user = service.getUser(username)
+        btnRecharge.setOnClickListener(){
+            val intent = Intent(this@MainActivity, RechargeActivity::class.java)
+            startActivity(intent)
+        }
+        if (email != null) {
+            val user = service.getUser(email)
 
             user.enqueue(object: Callback<UserItem>{
                 override fun onResponse(call: Call<UserItem>, response: Response<UserItem>) {
 
-
+                    val name = response.body()?.name
+                    txtName.text = name
+                    getcardDetails(email)
                 }
 
                 override fun onFailure(call: Call<UserItem>, t: Throwable) {
-
                 }
 
             })
         }
+        card.setOnClickListener(){
+            val intent = Intent(this@MainActivity, com.project.lasalle.stm.CardDetails::class.java)
+            startActivity(intent)
+        }
+    }
 
+    private fun getcardDetails(email :String){
+        val card = service.getCardDetails(email)
+
+        card.enqueue(object: Callback<CardDetails>{
+            override fun onResponse(call: Call<CardDetails>, response: Response<CardDetails>) {
+               val cardNumber = response.body()?.cardNumber
+                val expDate = response.body()?.expDate
+                val startDate = response.body()?.StartDate
+                txtCardNumber.text = cardNumber
+                txtExpDate.text = expDate
+                txtActivePlan.text = startDate
+            }
+
+            override fun onFailure(call: Call<CardDetails>, t: Throwable) {
+            }
+
+        })
     }
 }

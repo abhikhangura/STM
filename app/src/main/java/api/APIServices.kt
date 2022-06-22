@@ -1,8 +1,6 @@
 package api
 
-import model.LoginResponse
-import model.Plans
-import model.UserItem
+import model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -11,17 +9,37 @@ interface APIServices {
     // authenticate user for login
     @FormUrlEncoded
     @POST("verifyUser")
-    fun verifyUser(@Field("username") username: String,
-                   @Field("password") password: String
-    ):Call<LoginResponse>
+    fun verifyUser(@Field("email") email: String,
+                   @Field("password") password: String):Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("registerUser")
+    fun registerUser(@Field("name") name: String,
+                     @Field("email") email: String,
+                     @Field("password") password: String,
+                     @Field("phoneNumber") phoneNumber: String,
+                     @Field("city") city: String,
+                     @Field("state") state: String,
+                     @Field("street") street: String,
+                     @Field("pin") pin :String,
+                     @Field("access") access: Boolean):Call<RegisterResponse>
+
 
     // fetching user profile from database
-    @GET("user/{name}")
-    fun getUser(@Path("name") name: String):Call<UserItem>
+    @FormUrlEncoded
+    @POST("user")
+    fun getUser(@Field("email") email: String):Call<UserItem>
+
+    @FormUrlEncoded
+    @POST("cardDetails")
+    fun getCardDetails(@Field("email") email: String):Call<CardDetails>
 
     // fetching all the available plans
-    @GET("getPlans")
-    fun getPlans():Call<Plans>
+    @POST("getPlans")
+    fun getPlans():Call<List<Plans>>
 
+    @FormUrlEncoded
+    @POST("getTransactions")
+    fun getTransactions(@Field("cardNumber") cardNumber: String): Call<List<Transactions>>
 
 }

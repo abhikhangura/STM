@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android Projects/STM/app/src/main/res/layout/activity_card_details.xml" value="0.3625" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Android Projects/STM/app/src/main/res/layout/activity_recharge.xml" value="0.3625" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/layout/activity_sign_up.xml" value="0.3625" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/layout/activity_splash.xml" value="0.33" />
+        <entry key="..\:/Android Projects/STM/app/src/main/res/layout/plans_list_view.xml" value="0.3614583333333333" />
+        <entry key="..\:/Android Projects/STM/app/src/main/res/layout/transactions_list_view.xml" value="0.3614583333333333" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.19" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/xml/network_config.xml" value="0.3625" />
         <entry key="..\:/Android Projects/STM/app/src/main/res/xml/network_security_config.xml" value="0.18541666666666667" />

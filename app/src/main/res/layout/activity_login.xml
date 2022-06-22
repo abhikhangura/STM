@@ -33,7 +33,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"/>
+                android:hint="@string/email"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,11 +43,13 @@
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox.Dense"
             android:id="@+id/edPassword"
             app:layout_constraintTop_toBottomOf="@id/edEmail"
+            app:passwordToggleEnabled="true"
             android:layout_marginTop="20dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:hint="Password"/>
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -58,7 +60,7 @@
             android:layout_height="wrap_content"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_weight="1"
-            android:text="SignIn"
+            android:text="@string/signin"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

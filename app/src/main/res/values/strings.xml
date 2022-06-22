@@ -2,4 +2,22 @@
     <string name="app_name">STM</string>
     <string name="register">Not a user? SignUp</string>
     <string name="invalidIdAndPassword">Invalid username and password!</string>
+    <string name="signin">SignIn</string>
+    <string name="signup">SignUp</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="pin">Pin</string>
+    <string name="password">Password</string>
+    <string name="already_registered_signin">Already Registered? SignIn</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="card_number">Card Number</string>
+    <string name="report_your_problems">Report your problems</string>
+    <string name="card_details">Card Details</string>
+    <string name="recharge_card">Recharge Card</string>
+    <string name="plans">Plans</string>
 </resources>
