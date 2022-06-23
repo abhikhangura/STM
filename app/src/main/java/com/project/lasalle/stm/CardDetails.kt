@@ -56,6 +56,10 @@ class CardDetails : AppCompatActivity() {
         card.enqueue(object: Callback<CardDetails>{
             override fun onResponse(call: Call<CardDetails>, response: Response<CardDetails>) {
                 val cardNumber : String? = response.body()?.cardNumber
+                val cardPref = getSharedPreferences("card", MODE_PRIVATE)
+                val editor = cardPref.edit()
+                editor.putString("cardNumber", cardNumber)
+                editor.apply()
                 val expDate = response.body()?.expDate
                 val startDate = response.body()?.StartDate
                 txtCardNumber.text = cardNumber

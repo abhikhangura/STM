@@ -5,6 +5,7 @@ import android.content.Intent
 import api.RetrofitClient.service
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_main.*
 import model.CardDetails
@@ -40,10 +41,18 @@ class MainActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<UserItem>, response: Response<UserItem>) {
 
                     val name = response.body()?.name
-                    txtName.text = name
-                    getcardDetails(email)
-                }
-
+                    val access = response.body()?.access
+                    if (access == false){
+                        card.visibility = View.GONE
+                        txtMsg.visibility = View.VISIBLE
+                        btnRecharge.visibility = View.GONE
+                        report.visibility = View.GONE
+                    }
+                    else{
+                        txtName.text = name
+                        getcardDetails(email)
+                    }
+                    }
                 override fun onFailure(call: Call<UserItem>, t: Throwable) {
                 }
 
@@ -61,6 +70,10 @@ class MainActivity : AppCompatActivity() {
         card.enqueue(object: Callback<CardDetails>{
             override fun onResponse(call: Call<CardDetails>, response: Response<CardDetails>) {
                val cardNumber = response.body()?.cardNumber
+                val cardPref = getSharedPreferences("card", MODE_PRIVATE)
+                val editor = cardPref.edit()
+                editor.putString("cardNumber",cardNumber)
+                editor.apply()
                 val expDate = response.body()?.expDate
                 val startDate = response.body()?.StartDate
                 txtCardNumber.text = cardNumber

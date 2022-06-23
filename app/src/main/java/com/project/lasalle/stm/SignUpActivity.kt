@@ -3,11 +3,13 @@ package com.project.lasalle.stm
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import api.RetrofitClient.service
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_sign_up.*
+import model.CardResponse
 import model.RegisterResponse
 import model.UserItem
 import retrofit2.Call
@@ -83,9 +85,12 @@ class SignUpActivity : AppCompatActivity() {
                    val success = response.body()?.success
 
                    if (success != false){
+                       generateCard(email)
                        Snackbar.make(view,"User Registered!!!",Snackbar.LENGTH_LONG).show()
-                       val sharedUsername= getSharedPreferences("email", MODE_PRIVATE)
-                       val email = sharedUsername.getString("email", null)
+                       val sharedUsername = getSharedPreferences("email", MODE_PRIVATE)
+                       val editor = sharedUsername.edit()
+                       editor.putString("email",email)
+                       editor.apply()
                        val intent = Intent(this@SignUpActivity, MainActivity::class.java)
                        startActivity(intent)
                    }
@@ -97,6 +102,22 @@ class SignUpActivity : AppCompatActivity() {
 
            })
         }
+    }
+    private fun generateCard(email: String){
+        val cardNumber = (123456789..987654321).random().toString()
 
+        val createCard = service.createCard(cardNumber,email)
+
+        createCard.enqueue(object :Callback<CardResponse>{
+            override fun onResponse(call: Call<CardResponse>, response: Response<CardResponse>) {
+                val status = response.body()?.status
+
+                Log.d("response", status.toString())
+            }
+
+            override fun onFailure(call: Call<CardResponse>, t: Throwable) {
+                Log.e("Error",t.message.toString())
+            }
+        })
     }
 }

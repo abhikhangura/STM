@@ -20,4 +20,7 @@
     <string name="card_details">Card Details</string>
     <string name="recharge_card">Recharge Card</string>
     <string name="plans">Plans</string>
+    <string name="card_is_not_approved">Card is not approved.</string>
+    <string name="recharge">Recharge</string>
+    <string name="exp_date">Exp Date</string>
 </resources>

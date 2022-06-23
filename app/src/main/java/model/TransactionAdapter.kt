@@ -23,7 +23,7 @@ class TransactionAdapter(private val transactionList : List<Transactions>) : Rec
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
       val currentPosition = transactionList[position]
-        holder.txtAmount.text = currentPosition.amount.toString()
+        holder.txtAmount.text = "$ " + currentPosition.amount.toString()
         holder.txtDate.text = currentPosition.date
     }
 

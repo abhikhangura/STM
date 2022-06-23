@@ -7,9 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.project.lasalle.stm.MainActivity
 import com.project.lasalle.stm.R
 
-class PlanAdapter(private val plansList : List<Plans>) : RecyclerView.Adapter<PlanAdapter.MyViewHolder>() {
+class PlanAdapter(private val plansList : List<Plans>, private val listener : OnItemClickListener) : RecyclerView.Adapter<PlanAdapter.MyViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -22,17 +23,29 @@ class PlanAdapter(private val plansList : List<Plans>) : RecyclerView.Adapter<Pl
         val currentItem = plansList[position]
         holder.txtPlanName.text = currentItem.planName
         holder.txtPlanAmount.text = "$" + currentItem.amount
-        //holder.txtPlanDuration.text = currentItem.duration
+        holder.txtPlanDuration.text = currentItem.duration.toString() + " Days"
     }
 
     override fun getItemCount(): Int {
       return plansList.size
     }
 
-    class MyViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView){
+    inner class MyViewHolder(itemView : View) :RecyclerView.ViewHolder(itemView){
 
         val txtPlanName : TextView  = itemView.findViewById(R.id.txtPlanName)
         val txtPlanAmount: TextView = itemView.findViewById(R.id.txtPlanAmount)
         val txtPlanDuration: TextView = itemView.findViewById(R.id.txtPlanDuration)
+
+        init {
+            itemView.setOnClickListener(){
+                val position: Int = adapterPosition
+                if (position != RecyclerView.NO_POSITION){
+                    listener.onItemClick(position)
+                }
+            }
+        }
+    }
+    interface OnItemClickListener{
+        fun onItemClick(position: Int)
     }
 }
